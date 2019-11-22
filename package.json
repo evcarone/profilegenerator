@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^6.3.1"
+    "convertapi": "^1.2.1",
+    "inquirer": "^6.3.1",
+    "pdfkit": "^0.10.0"
   }
 }
