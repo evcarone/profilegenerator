@@ -6,33 +6,18 @@ var convertapi = require('convertapi')('qT4fXsZhiJwJ2O6B')
 const writeFileAsync = util.promisify(fs.writeFile);
 
 
-
 function promptUser() {
     return inquirer.prompt([{
             type: "input",
-            name: "name",
-            message: "What is your name?"
+            name: "username",
+            message: "What is your GitHub user name?"
         },
         {
             type: "input",
             name: "location",
             message: "Where are you from?"
         },
-        {
-            type: "input",
-            name: "hobby",
-            message: "What is your favorite hobby?"
-        },
-        {
-            type: "input",
-            name: "food",
-            message: "What is your favorite food?"
-        },
-        {
-            type: "input",
-            name: "github",
-            message: "Enter your GitHub Username"
-        },
+        
         {
             type: "input",
             name: "linkedin",
@@ -54,12 +39,14 @@ function generateHTML(answers) {
 <body>
   <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Hi! My name is ${answers.name}</h1>
+    <h1 class="display-4">Hi! My name is ${answers.username}</h1>
     <p class="lead">I am from ${answers.location}.</p>
     <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
     <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${answers.github}</li>
-      <li class="list-group-item">LinkedIn: ${answers.linkedin}</li>
+      <li class="list-group-item">My GitHub username is ${answers.username}</li>
+      <li class="list-group-item">My GitHub total Repos are ${answers.numRepos}</li>
+      <li class="list-group-item">LinkedIn: {queryURL}</li>
+      <li class="list-group-item">link to my picture:</li>
     </ul>
   </div>
 </div>
@@ -67,20 +54,32 @@ function generateHTML(answers) {
 </html>`;
 }
 
+
+// link for evelyns github avatar & github api call for all my repos
+// url: 'https://avatars1.githubusercontent.com/u/50718409?v=4',
+// https://api.github.com/users/evcarone/repos?per_page=100'
+    
+var queryURL
 promptUser()
     .then(function (answers) {
+
         const html = generateHTML(answers);
 
-        return writeFileAsync("index.html", html)
-        // return writeFileAsync("index.html", html)
+        writeFileAsync("index.html", html)
 
     })
+    .then(function(userInfo){
+        const templateFile = fs.readFileSync('./index.html', {encoding: 'utf8'})
+         let tempFile = templateFile.replace('{queryURL}', 'HELLO')
+    })
     .then(function () {
-        convertapi.convert('pdf', { File: './index.html' })
-        .then(function(result){
-        return result.file.save('./myfile.pdf');
-        })
-        
+        convertapi.convert('pdf', {
+                File: './index.html'
+            })
+            .then(function (result) {
+                return result.file.save('./myfile.pdf');
+            })
+
     })
     .catch(function (err) {
         console.log(err);
