@@ -180,7 +180,98 @@
     </style>
 
 <body>
-        <!-- <h1 class="wrapper">HELLO</h1> -->
+       
+     <!-- <h1 class="wrapper">HELLO</h1> -->
+    <!-- <div class="jumbotron jumbotron-fluid">
+        <div class="container  .jumbotron">
+            <h1 class="display-4">Hi! My name is ${name}</h1>
+            <p class="lead">Currently @ ${company}.</p>
+            <p class="lead">I am from ${answers.location}.</p>
+            <h3><span class="badge badge-secondary">Contact Me</span></h3>
+            <ul class="list-group">
+                <li class="list-group-item">My GitHub username is ${answers.username}</li>
+                <li class="list-group-item">My GitHub total Repos are ${answers.numRepos}</li>
+                <li class="list-group-item">My GitHub total Repos are ${answers.numRepos}</li> -->
+                <!-- <li class="list-group-item">LinkedIn: {queryURL}</li> -->
+                <!-- <li class="list-group-item">GitHub Pic: {avatar}</li>
+            </ul>
+        </div>
+    </div> -->
+    <div class="container">
+            <div class="row">
+                <div class="col-sm .col jumbotron .jumbotron">
+                    <img src="../assets/evelynAvatar.jpg" width="200px"  alt="my pic">
+                    <h1 class="display-4" >Hi! My name is ${name}</h1>
+                    <p class="lead">Currently @ ${company}.</p>
+                    <p class="lead">Living in ${answers.location}.</p>
+                    <h3>Contact Me at LinkedIn: {queryURL}</h3>
+                </div>
+            </div>
+    
+            <!-- spacer row -->
+            <div class="row">
+                <div class="col-sm">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-sm .col-1">
+                    <!-- One of 4 columns -->
+                </div>
+                <div class="col-sm .col-5">
+                    <div class="card">
+                        <div class="card-body .card">
+                            My GitHub username is <br>${answers.username}
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <div class="col-sm .col-5">
+                    <div class="card">
+                        <div class="card-body .card">
+                            My GitHub total Repos are <br> ${answers.numRepos}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm .col-1">
+                    <!-- One of 4 columns -->
+                </div>
+            </div>
+    
+            <div class="row">
+                    <div class="col-sm .col-1">
+                        <!-- One of 4 columns -->
+                    </div>
+                    <div class="col-sm .col-5">
+                        <div class="card">
+                            <div class="card-body .card">
+                                My GitHub username is <br>${answers.username}
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    <div class="col-sm .col-5">
+                        <div class="card">
+                            <div class="card-body .card">
+                                I am following <br> ${answers.following}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm .col-1">
+                        <!-- One of 4 columns -->
+                    </div>
+                </div>
+    
+            
+            
+            </div>
+
+
+    
+    
+    <!-- <h1 class="wrapper">HELLO</h1> -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Hi! My name is ${name}</h1>

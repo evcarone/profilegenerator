@@ -32,6 +32,7 @@ async function getResDataGitHubAPI(username) {
     let res = await axios.get(`https://api.github.com/users/${username}`); //call GitHub API with the username entered by the prompt
 
     const templateFile = fs.readFileSync('./assets/GenerateHTML.html', {
+    // const templateFile = fs.readFileSync('./assets/testGeenrateHTML.html', {
         encoding: 'utf8'
     }) // create a template file for the generated profile
 
@@ -43,8 +44,10 @@ async function getResDataGitHubAPI(username) {
     tempFile2 = tempFile2.replace('{gitHubURL}', res.data.html_url)
     tempFile2 = tempFile2.replace('{queryURL}', `https://www.linkedin.com/in/evelynmcarone/`)
     tempFile2 = tempFile2.replace('{avatar}', res.data.avatar_url)
-    tempFile2 = tempFile2.replace('${answers.username}', res.data.login)
-    tempFile2 = tempFile2.replace('${answers.numRepos}', res.data.public_repos)
+    tempFile2 = tempFile2.replace('${username}', res.data.login)
+    tempFile2 = tempFile2.replace('${numRepos}', res.data.public_repos)
+    tempFile2 = tempFile2.replace('${following}', res.data.following)
+    tempFile2 = tempFile2.replace('${followers}', res.data.followers)
 
 
     writeFileAsync("./artifacts/index.html", tempFile2)

@@ -207,9 +207,9 @@
             <div class="col-sm .col jumbotron .jumbotron">
                 <img src="../assets/evelynAvatar.jpg" width="200px"  alt="my pic">
                 <h1 class="display-4" >Hi! My name is ${name}</h1>
-                <p class="lead">Currently working @ ${company}.</p>
-                <p class="lead">Living in ${location}.</p>
-                <h4>Contact Me at LinkedIn: {queryURL}</h4>
+                <p class="lead">Currently @ ${company}.</p>
+                <p class="lead">Living in ${answers.location}.</p>
+                <h3>Contact Me at LinkedIn: {queryURL}</h3>
             </div>
         </div>
 
@@ -226,7 +226,7 @@
             <div class="col-sm .col-5">
                 <div class="card">
                     <div class="card-body .card">
-                        My GitHub username is <br>${username}
+                        My GitHub username is <br>${answers.username}
                     </div>
                 </div>
 
@@ -235,7 +235,7 @@
             <div class="col-sm .col-5">
                 <div class="card">
                     <div class="card-body .card">
-                        My total GitHub Repos are <br> ${numRepos}
+                        My GitHub total Repos are <br> ${answers.numRepos}
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@
                 <div class="col-sm .col-5">
                     <div class="card">
                         <div class="card-body .card">
-                            I am following <br>${following} people
+                            My GitHub username is <br>${answers.username}
                         </div>
                     </div>
     
@@ -260,7 +260,7 @@
                 <div class="col-sm .col-5">
                     <div class="card">
                         <div class="card-body .card">
-                            I am followed by <br> ${followers} person
+                            I am following <br> ${answers.following}
                         </div>
                     </div>
                 </div>
