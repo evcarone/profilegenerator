@@ -10,10 +10,18 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 // enter GitHub user name to retrieve GitHub info from the API call
 inquirer
-    .prompt({
-        message: "Enter your GitHub username:",
-        name: "username"
-    })
+    .prompt([
+        {
+            type: "input",
+            name: "username",
+            message: "What is your GitHub name?"
+          },
+          {
+            type: "input",
+            name: "favColor",
+            message: "Whatis your favorite color?"
+          },
+        ])
     .then(function ({
         username
     }) {
@@ -32,13 +40,12 @@ async function getResDataGitHubAPI(username) {
     let res = await axios.get(`https://api.github.com/users/${username}`); //call GitHub API with the username entered by the prompt
 
     const templateFile = fs.readFileSync('./assets/GenerateHTML.html', {
-    // const templateFile = fs.readFileSync('./assets/testGeenrateHTML.html', {
         encoding: 'utf8'
     }) // create a template file for the generated profile
 
-    //replace 
+    // dynamically update index.html file with results from GitHub API
 
-    let tempFile2 = templateFile.replace('${answers.location}', res.data.location)
+    let tempFile2 = templateFile.replace('${location}', res.data.location)
     tempFile2 = tempFile2.replace('${name}', res.data.name)
     tempFile2 = tempFile2.replace('${company}', res.data.company)
     tempFile2 = tempFile2.replace('{gitHubURL}', res.data.html_url)
@@ -48,6 +55,11 @@ async function getResDataGitHubAPI(username) {
     tempFile2 = tempFile2.replace('${numRepos}', res.data.public_repos)
     tempFile2 = tempFile2.replace('${following}', res.data.following)
     tempFile2 = tempFile2.replace('${followers}', res.data.followers)
+
+    tempFile2 = tempFile2.replace('${favColor}', `red`)
+    // tempFile2 = tempFile2.replace('${favColor}', favColor)
+    tempFile2 = tempFile2.replace('${favColor}', `red`)
+
 
 
     writeFileAsync("./artifacts/index.html", tempFile2)
